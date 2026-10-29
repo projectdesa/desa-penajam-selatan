@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Database Desa Penajam Selatan</title>
+<style>
+:root{--bg:#f4f6f3;--sf:#fff;--tx:#1d2b22;--mu:#66756b;--br:#d9e0da;--pr:#1f7a4d;--pt:#fff;--dg:#b3382c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--sf:#1b241f;--tx:#e6eee8;--mu:#93a499;--br:#2d3a32;--pr:#3fb073;--pt:#08120c;--dg:#ee7b6e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121815;--sf:#1b241f;--tx:#e6eee8;--mu:#93a499;--br:#2d3a32;--pr:#3fb073;--pt:#08120c;--dg:#ee7b6e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{margin:0}
+button,input,select,textarea{font:inherit;color:var(--tx)}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid var(--br);border-radius:8px;background:var(--sf)}
+textarea{min-height:80px;resize:vertical}
+button{cursor:pointer;border:1px solid var(--br);background:var(--sf);border-radius:8px;padding:8px 13px}
+button.p{background:var(--pr);color:var(--pt);border-color:var(--pr);font-weight:600}
+button.d{color:var(--dg)}
+button.x{padding:2px 8px;border:0;background:none;color:var(--dg);font-size:18px;line-height:1}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:var(--sf);border:1px solid var(--br);border-radius:14px;padding:28px;width:100%;max-width:370px;display:grid;gap:12px}
+.box h1{font-size:21px;text-align:center}
+.box p{margin:0;text-align:center;color:var(--mu);font-size:13px}
+label{font-size:13px;color:var(--mu);display:grid;gap:4px}
+.err{color:var(--dg);font-size:13px;min-height:18px;text-align:center}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:var(--bg)}
+header h2{font-size:17px}
+.lg{display:flex;align-items:center;gap:10px}
+.lgo{width:40px;height:40px;border-radius:12px;background:var(--pr);color:var(--pt);display:grid;place-items:center;font-weight:800}
+.lg b{display:block;font-size:17px;line-height:1.2}
+.lg small{color:var(--mu)}
+.ic{border-radius:50%;width:38px;height:38px;padding:0;border:0;background:none;font-size:19px}
+.hero{border-radius:24px;padding:18px;color:#fff;background:linear-gradient(160deg,var(--pr),#0f3d28 135%);display:grid;gap:14px;margin-top:4px}
+.hero .t{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.hero h2{font-size:22px}
+.hero .clk{text-align:right;font-size:13px}
+.hero .clk b{font-size:26px;display:block;line-height:1.1}
+.hs{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.17);border-radius:16px;padding:10px 4px;text-align:center}
+.hs b{display:block;font-size:21px}
+.hs small{font-size:11px;opacity:.9}
+.sc{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 6px;margin:22px 0}
+.sc button{border:0;background:none;display:grid;justify-items:center;align-content:start;gap:6px;font-size:12px;padding:0;line-height:1.25}
+.sc i{font-style:normal;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:26px}
+.fab{position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:18px;border:0;background:#c9a227;color:#fff;font-size:32px;line-height:1;box-shadow:0 6px 16px rgba(0,0,0,.28);z-index:21;padding:0}
+.nt{border:2px dashed #c9a227;border-radius:16px;padding:12px 14px;background:color-mix(in srgb,#c9a227 10%,var(--sf));display:grid;gap:8px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:2px;background:var(--sf);border-top:1px solid var(--br);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;display:grid;justify-items:center;gap:1px;border:0;background:none;border-radius:16px;padding:6px 2px;font-size:11px;color:var(--mu)}
+nav button.on,.chip.on{background:var(--pr);color:var(--pt);border-color:var(--pr)}
+main{max-width:1000px;margin:0 auto;padding:6px 16px 130px}
+nav button.on{background:color-mix(in srgb,var(--pr) 16%,transparent);color:var(--pr);font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border-radius:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.card{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:14px;display:grid;gap:8px;align-content:start}
+.card h3{font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.sec{margin:16px 0 8px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mu)}
+.per{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--br);padding:3px 0;gap:6px}
+.per small{color:var(--mu)}
+.row{display:grid;grid-template-columns:1fr 1fr auto;gap:6px}
+.empty{color:var(--mu);font-size:13px}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.wide{grid-column:1/-1}
+.tag{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg);border:1px solid var(--br);color:var(--mu);white-space:nowrap}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.bar>*{width:auto}
+.add{display:flex;gap:6px;margin-top:10px}
+pre{white-space:pre-wrap;margin:0;font:inherit}
+label.ck{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--tx);padding:3px 0}
+.ck input{width:auto}
+button.tag{cursor:pointer}
+details summary{cursor:pointer;color:var(--pr);font-size:13px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:grid;place-items:center;padding:20px}
+.dl{background:var(--sf);border:1px solid var(--br);border-radius:16px;padding:18px;max-width:380px;width:100%;display:grid;gap:12px}
+.dl p{margin:0}
+.org{background:var(--sf);border:1px solid var(--br);border-radius:12px;padding:18px 12px;margin-top:12px;overflow-x:auto}
+.lvl{display:flex;flex-wrap:wrap;justify-content:center;gap:28px 12px}
+.lbl{text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:0 0 10px}
+.nd{position:relative;min-width:140px;max-width:190px;border:1px solid var(--br);border-radius:10px;padding:8px 10px;text-align:center;display:grid;gap:2px;background:var(--bg)}
+.nd b{font-size:13px}
+.nd span{font-size:13px}
+.nd i{font-size:12px;color:var(--mu)}
+.t4 .nd{border:2px solid var(--pr)}
+.t4 .nd b{color:var(--pr)}
+.sub .nd::before{content:"▼";position:absolute;left:50%;top:-18px;transform:translateX(-50%);font-size:11px;color:var(--pr)}
+.arr{text-align:center;color:var(--pr);line-height:1;margin:6px 0 14px;font-size:14px}
+.arr::before{content:"";display:block;height:22px;border-left:2px solid var(--pr);width:0;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+let db,users,tab='home',cur=0,fType='semua',fMonth='',fKind='semua',fAm='',openMus='',editId='',mode='bagan';
+const rd=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v||f}catch(e){return f}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const save=()=>wr('pg_db',db);
+const P=(n,g)=>({id:uid(),name:n,grp:g,people:[]});
+function seed(){
+  const s4=['Kyai Kelompok','Wakil Kyai Kelompok','Penerobos','KU','Mubaligh','Agnia'];
+  const bd=['Tim Pernikahan','Tim Dhuafak','Ketua PAC','Tim Pembangunan','Tim Benda Sabil'];
+  return{
+    pc:['Kyai Desa','Wakil Kyai Desa','Penerobos Desa','Agnia Desa','KU Desa'].map(n=>P(n,'')),
+    pac:['Babulu','Waru','Bere-bere','Petung','Giripurwa'].map(n=>({id:uid(),name:n,pos:[...s4.map(x=>P(x,'4S')),...bd.map(x=>P(x,'Bidang'))]})),
+    mus:[]
+  };
+}
+function init(){db=rd('pg_db',null)||seed();if(!db.ag)db.ag=[];if(!db.kinds)db.kinds=['Pengajian Umum Desa','Pengajian Pengurus Se Desa','Pengajian Agnia Desa','Trobosan Desa','MT Se Desa'];users=[{u:'admin',p:'superadmin'}];
+  let s=null;try{s=sessionStorage.getItem('pg_sess')}catch(e){}
+  s?main(s):login();}
+function login(){
+  $('#app').innerHTML=`<div class="login"><div class="box"><h1>Database Desa Penajam Selatan</h1><p style="font-weight:700;letter-spacing:.06em">DESA PENAJAM SELATAN</p>
+  <label>Username<input id="u" autocomplete="username"></label>
+  <label>Password<input id="p" type="password" autocomplete="current-password"></label>
+  <div class="err" id="e"></div><button class="p" id="go">Masuk</button>
+  </div></div>`;
+  const go=()=>{const a=users.find(x=>x.u===$('#u').value.trim()&&x.p===$('#p').value);
+    if(!a){$('#e').textContent='Username atau password salah';return}
+    try{sessionStorage.setItem('pg_sess',a.u)}catch(e){}main(a.u)};
+  $('#go').onclick=go;$('#p').onkeydown=e=>{if(e.key==='Enter')go()};
+}
+function pCard(pos,scope){
+  return`<div class="card" data-s="${scope}" data-id="${pos.id}"><h3><span>${esc(pos.name)}</span><button class="x" data-a="delpos" title="Hapus jabatan">×</button></h3>
+  ${pos.people.length?pos.people.map((q,i)=>`<div class="per"><span>${esc(q.n)} ${q.h?`<small>· ${esc(q.h)}</small>`:''}</span><button class="x" data-a="delp" data-i="${i}">×</button></div>`).join(''):'<div class="empty">Belum ada pengurus</div>'}
+  <div class="row"><input class="in-n" placeholder="Nama"><input class="in-h" placeholder="No. HP (opsional)"><button class="p" data-a="addp">+</button></div></div>`;
+}
+function homeView(){
+  const n=new Date(),h=n.getHours(),sp=h<11?'pagi':h<15?'siang':h<18?'sore':'malam';
+  const tm=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace('.',':');
+  const dt=n.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'short'});
+  const t0=today(),mo=t0.slice(0,7);
+  const ppl=db.pc.reduce((a,p)=>a+p.people.length,0)+db.pac.reduce((s,k)=>s+k.pos.reduce((a,p)=>a+p.people.length,0),0);
+  const up=db.ag.filter(x=>x.st==='Terjadwal'&&x.date>=t0).sort((a,b)=>a.date.localeCompare(b.date));
+  const S=[['pc','bagan','🗂️','Struktur PC/Desa','#c9a227'],['pac','bagan','👥','PAC / Kelompok','#5b92a3'],['ag','','📅','Agenda Desa','#c9874a'],['mus','','🤝','Musyawarah','#b86b7d'],['pc','data','✏️','Kelola Pengurus PC','#6b78a8'],['pac','data','📝','Kelola Pengurus PAC','#4f8f8a'],['ag','','📖','Materi Terakhir','#c4687d'],['mus','','📊','Hasil Bulanan','#5e9462']];
+  return`<div class="hero"><div class="t"><div><h2>Desa Penajam Selatan</h2><div>Selamat ${sp}, Admin</div></div><div class="clk"><b>${tm}</b>${dt}</div></div>
+  <div class="hs"><div><b>${db.pac.length}</b><small>PAC</small></div><div><b>${ppl}</b><small>Pengurus</small></div><div><b>${up.length}</b><small>Agenda</small></div><div><b>${db.mus.filter(x=>x.date.slice(0,7)===mo).length}</b><small>Musyawarah bulan ini</small></div></div></div>
+  <div class="sc">${S.map(s=>`<button data-a="go" data-t="${s[0]}" ${s[1]?`data-m="${s[1]}"`:''}><i style="background:${s[4]};color:#fff">${s[2]}</i>${s[3]}</button>`).join('')}</div>
+  ${attChart()}<div class="nt"><b>📅 Agenda terdekat</b>${up.length?up.slice(0,3).map(x=>`<div class="per"><span>${esc(x.kind)}<br><small>${esc(x.place||'-')}</small></span><span class="tag">${esc(x.date)}${x.time?' · '+esc(x.time):''}</span></div>`).join(''):'<span class="empty">Belum ada agenda terjadwal. Tekan tombol + untuk menambah.</span>'}</div>`;
+}
+function view(){
+  if(tab==='home')return homeView();
+  if(tab==='pc'&&mode==='bagan')return`<h2>Struktur Kepengurusan PC/Desa</h2>${modeBar()}${pcChart()}`;
+  if(tab==='pc')return`<h2>Struktur Kepengurusan PC/Desa</h2>${modeBar()}<div class="grid" style="margin-top:12px">${db.pc.map(p=>pCard(p,'pc')).join('')}</div>
+   <div class="add"><input id="np" placeholder="Nama kepengurusan baru (mis. Tim Kebersihan Desa)"><select id="ng" style="width:auto"><option value="">Kepengurusan lainnya</option><option value="4S">Tingkat atas (bersama 4S)</option></select><button class="p" data-a="newpc">Tambah</button></div>`;
+  if(tab==='pac'){
+    if(cur>=db.pac.length)cur=0;const k=db.pac[cur];
+    return`<div class="chips">${db.pac.map((x,i)=>`<button class="chip ${i===cur?'on':''}" data-a="pick" data-i="${i}">${esc(x.name)}</button>`).join('')}
+    <button class="chip" data-a="newpac">+ PAC/Kelompok</button></div>
+    ${k&&mode==='bagan'?`<h2>PAC ${esc(k.name)}</h2>${modeBar()}${chart(k.pos.filter(p=>p.grp==='4S'),k.pos.filter(p=>p.grp!=='4S'),'Struktur Kepengurusan Kelompok','Pengurus Bidang / Tim')}`:k?`<div style="display:flex;justify-content:space-between;align-items:center"><h2>PAC ${esc(k.name)}</h2><button class="d" data-a="delpac">Hapus PAC</button></div>${modeBar()}
+    <div class="sec">4S (kepengurusan tertinggi)</div><div class="grid">${k.pos.filter(p=>p.grp==='4S').map(p=>pCard(p,'pac')).join('')}</div>
+    <div class="sec">Pengurus Bidang / Tim</div><div class="grid">${k.pos.filter(p=>p.grp==='Bidang').map(p=>pCard(p,'pac')).join('')}</div>
+    <div class="add"><input id="np" placeholder="Kepengurusan lain (mis. Tim Kesehatan)"><select id="ng" style="width:auto"><option>Bidang</option><option>4S</option></select><button class="p" data-a="newpos">Tambah</button></div>`:'<p class="empty">Belum ada PAC.</p>'}`;
+  }
+  if(tab==='ag')return agView();
+  const m=today();const E=db.mus.find(x=>x.id===editId)||null;
+  const list=db.mus.filter(x=>(fType==='semua'||x.type===fType)&&(!fMonth||x.date.slice(0,7)===fMonth)).sort((a,b)=>b.date.localeCompare(a.date));
+  return`<h2>${E?'Edit Hasil Musyawarah':'Hasil Musyawarah Bulanan'}</h2><div class="card" style="margin:12px 0"><div class="form">
+  <label>Jenis<select id="mt"><option ${E&&E.type!=='Musyawarah Gabungan'?'':'selected'}>Musyawarah Gabungan</option><option ${E&&E.type==='Musyawarah Khusus 4S'?'selected':''}>Musyawarah Khusus 4S</option></select></label>
+  <label>Tanggal<input id="md" type="date" value="${E?E.date:m}"></label>
+  <label>Tempat<input id="mp" value="${esc(E?E.place:'')}"></label>
+  
+  <div class="wide" id="ro" ${E&&E.type!=='Musyawarah Gabungan'?'style="display:none"':''}>${rosterForm(E)}</div>
+  <label class="wide">Evaluasi musyawarah bulan kemarin<textarea id="me">${esc(E?E.ev:'')}</textarea></label>
+  <div class="wide"><div class="sec" style="margin:0 0 6px">Laporan hasil musyawarah per kelompok</div><div class="grid" style="gap:8px">${db.pac.map(k=>`<label>${esc(k.name)}<textarea class="lp" data-k="${esc(k.name)}" placeholder="Hasil musyawarah kelompok ${esc(k.name)}">${esc(E&&E.lap?(E.lap.find(l=>l.k===k.name)||{}).t:'')}</textarea></label>`).join('')}</div></div>
+  <label class="wide">Hasil musyawarah<textarea id="mr">${esc(E?E.res:'')}</textarea></label>
+  </div>
+  <div class="bar" style="margin:0"><button class="p" data-a="savemus">${E?'Simpan Perubahan':'Simpan Hasil Musyawarah'}</button>${E?'<button data-a="cancel">Batal Edit</button>':'<button data-a="rf">Reset Form</button>'}</div></div>
+  ${attChart()}${attGroup()}<div class="bar"><select id="ft"><option value="semua">Semua jenis</option><option ${fType==='Musyawarah Gabungan'?'selected':''}>Musyawarah Gabungan</option><option ${fType==='Musyawarah Khusus 4S'?'selected':''}>Musyawarah Khusus 4S</option></select>
+  <input type="month" id="fm" value="${fMonth}"><button data-a="clr">Reset</button></div>
+  <div class="grid">${list.length?list.map(x=>`<div class="card"><h3><span>${esc(x.type)}</span><button class="x" data-a="delmus" data-id="${x.id}">×</button></h3>
+  <div><span class="tag">${esc(x.date)}</span> <span class="tag">${esc(x.place||'-')}</span></div>
+  ${x.att?`<small class="empty">Hadir: ${esc(x.att)}</small>`:''}${attBox(x)}${x.ev?`<b>Evaluasi bulan lalu</b><pre>${esc(x.ev)}</pre>`:''}<b>Hasil</b><pre>${esc(x.res||'-')}</pre>${x.lap&&x.lap.length?`<b>Laporan per kelompok</b>${x.lap.map(l=>`<div><span class="tag">${esc(l.k)}</span><pre>${esc(l.t)}</pre></div>`).join('')}`:''}${x.fol?`<b>Tindak lanjut</b><pre>${esc(x.fol)}</pre>`:''}<div class="bar" style="margin:0"><button data-a="emus" data-id="${x.id}">✏️ Edit</button><button class="d" data-a="delmus" data-id="${x.id}">🗑 Hapus</button></div></div>`).join(''):'<p class="empty">Belum ada data musyawarah.</p>'}</div>`;
+}
+function agView(){
+  const list=db.ag.filter(x=>(fKind==='semua'||x.kind===fKind)&&(!fAm||x.date.slice(0,7)===fAm)).sort((a,b)=>a.date.localeCompare(b.date));
+  const opt=db.kinds.map(k=>`<option>${esc(k)}</option>`).join('');
+  return`<h2>Agenda Pengajian Tingkat Desa</h2>
+  ${lastMat()}<div class="sec">Jenis kegiatan</div>
+  <div class="chips">${db.kinds.map((k,i)=>`<span class="tag">${esc(k)} <button class="x" data-a="delkind" data-i="${i}" title="Hapus jenis">×</button></span>`).join('')}</div>
+  <div class="add" style="margin:0 0 14px"><input id="nk" placeholder="Tambah jenis kegiatan lain (mis. Pengajian Remaja Desa)"><button class="p" data-a="newkind">Tambah</button></div>
+  <div class="card" style="margin-bottom:12px"><div class="form">
+  <label>Kegiatan<select id="ak">${opt}</select></label>
+  <label>Tanggal<input id="ad" type="date" value="${today()}"></label>
+  <label>Waktu<input id="aw" type="time"></label>
+  <label>Tempat / PAC penyelenggara<input id="ap"></label>
+  <label>Pemateri / Mubaligh<input id="am"></label>
+  <label class="wide">Materi yang disampaikan<input id="at" placeholder="Opsional, bisa diisi setelah kegiatan"></label>
+  <label class="wide">Keterangan<textarea id="an"></textarea></label></div>
+  <div class="bar" style="margin:0"><button class="p" data-a="saveag">Simpan Agenda</button><button data-a="rf">Reset Form</button></div></div>
+  <div class="bar"><select id="fk"><option value="semua">Semua kegiatan</option>${db.kinds.map(k=>`<option ${fKind===k?'selected':''}>${esc(k)}</option>`).join('')}</select>
+  <input type="month" id="fa" value="${fAm}"><button data-a="clra">Reset</button></div>
+  <div class="grid">${list.length?list.map(x=>`<div class="card"><h3><span>${esc(x.kind)}</span><button class="x" data-a="delag" data-id="${x.id}">×</button></h3>
+  <div><span class="tag">${esc(x.date)}${x.time?' · '+esc(x.time):''}</span> <span class="tag">${esc(x.place||'-')}</span></div>
+  <small class="empty">Pemateri: ${esc(x.who||'-')}</small><div><b>Materi:</b> ${x.mat?esc(x.mat):'<span class="empty">belum diisi</span>'}</div><pre>${esc(x.note||'')}</pre>
+  <div class="bar" style="margin:0"><button data-a="stag" data-id="${x.id}">Status: ${esc(x.st)}</button><button data-a="mat" data-id="${x.id}">Isi/ubah materi</button></div></div>`).join(''):'<p class="empty">Belum ada agenda.</p>'}</div>`;
+}
+function roster(){const r=[];
+  db.pc.forEach(p=>p.people.forEach(q=>r.push({n:q.n,r:p.name,g:'Pengurus Desa'})));
+  db.pac.forEach(k=>k.pos.filter(p=>p.grp==='4S').forEach(p=>(p.people.length?p.people:[{n:'(nama belum diisi)'}]).forEach(q=>r.push({n:q.n,r:p.name+' '+k.name,g:'4S '+k.name}))));
+  return r}
+function rosterForm(E){const R=roster();const st=E&&E.rs?Object.fromEntries(E.rs.map(p=>[p.n+'|'+p.r,p.h])):null;
+  if(!R.length)return'<small class="empty">Belum ada data pengurus desa dan 4S. Isi dulu di menu Struktur dan PAC agar daftar peserta muncul.</small>';
+  let last='',h='';
+  R.forEach(p=>{if(p.g!==last){h+=`<div class="sec" style="margin:10px 0 4px">${esc(p.g)}</div>`;last=p.g}
+    h+=`<label class="ck"><input type="checkbox" class="rk" ${st?(st[p.n+'|'+p.r]?'checked':''):'checked'}><span>${esc(p.n)} <small>${esc(p.r)}</small></span></label>`});
+  const kos=R.filter(p=>p.n==='(nama belum diisi)').length;
+  return`<div class="sec" style="margin:0">Kehadiran Musyawarah Gabungan (centang = hadir)</div>${kos?`<small class="empty">${kos} jabatan 4S belum ada namanya. Isi di menu PAC agar nama tampil di sini.</small>`:''}<div class="bar" style="margin:6px 0 0"><button data-a="allh" data-v="1">Hadir semua</button><button data-a="allh" data-v="0">Kosongkan</button></div>${h}`}
+function attBox(x){if(!x.rs)return'';const H=x.rs.filter(p=>p.h).length,T=x.rs.length;
+  const chip=(p,i)=>`<button class="tag" data-a="tgl" data-id="${x.id}" data-i="${i}" title="Klik untuk ubah status">${esc(p.n)} <small>${esc(p.r)}</small></button>`;
+  const L=h=>x.rs.map((p,i)=>!!p.h===h?chip(p,i):'').join('')||'<span class="empty">-</span>';
+  return`<div><b>Kehadiran:</b> ${H} hadir, ${T-H} tidak hadir dari ${T} (${T?Math.round(H*100/T):0}%)</div><details ${openMus===x.id?'open':''}><summary>Lihat daftar peserta</summary><div class="sec" style="margin:8px 0 4px">Hadir</div><div class="chips">${L(true)}</div><div class="sec" style="margin:8px 0 4px">Tidak hadir</div><div class="chips">${L(false)}</div></details>`}
+function attGroup(){const g={};
+  db.mus.filter(x=>x.rs).forEach(x=>x.rs.forEach(p=>{const k=p.g||'Lainnya';g[k]=g[k]||{h:0,t:0};g[k].t++;if(p.h)g[k].h++}));
+  const ks=Object.keys(g);if(!ks.length)return'';
+  return`<div class="org" style="margin:0 0 14px;text-align:left"><b>Persentase kehadiran per kelompok</b>${ks.map(k=>{const pc=Math.round(g[k].h*100/g[k].t);return`<div style="margin-top:8px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${esc(k)}</span><span>${g[k].h}/${g[k].t} · ${pc}%</span></div><div style="height:10px;border-radius:6px;background:var(--bg);overflow:hidden"><div style="width:${pc}%;height:100%;background:var(--pr)"></div></div></div>`}).join('')}</div>`}
+function attChart(){
+  const m={};db.mus.filter(x=>x.rs&&x.rs.length).forEach(x=>{const k=x.date.slice(0,7);m[k]=m[k]||{h:0,t:0};m[k].t+=x.rs.length;m[k].h+=x.rs.filter(p=>p.h).length});
+  const ks=Object.keys(m).sort().slice(-12);if(!ks.length)return'<div class="org" style="margin:0 0 14px"><b>Grafik kehadiran Musyawarah Gabungan</b><div class="empty" style="margin-top:6px">Grafik akan tampil setelah ada Musyawarah Gabungan yang dicatat kehadirannya (menu Musyawarah).</div></div>';
+  const mx=Math.max(...ks.map(k=>m[k].t)),W=Math.max(320,ks.length*80),bw=24,nm=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  const bars=ks.map((k,i)=>{const x0=i*80+14,a=m[k].h,b=m[k].t-a,ha=a/mx*130,hb=b/mx*130,pc=Math.round(a*100/m[k].t);
+    return`<rect x="${x0}" y="${160-ha}" width="${bw}" height="${ha}" rx="4" style="fill:var(--pr)"/><rect x="${x0+bw+4}" y="${160-hb}" width="${bw}" height="${hb}" rx="4" style="fill:var(--dg)"/>`
+    +`<text x="${x0+bw/2}" y="${155-ha}" text-anchor="middle" font-size="11" style="fill:var(--tx)">${a}</text><text x="${x0+bw*1.5+4}" y="${155-hb}" text-anchor="middle" font-size="11" style="fill:var(--tx)">${b}</text>`
+    +`<text x="${x0+bw+2}" y="178" text-anchor="middle" font-size="11" style="fill:var(--mu)">${nm[+k.slice(5,7)-1]} ${k.slice(2,4)}</text><text x="${x0+bw+2}" y="193" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--pr)">${pc}%</text>`}).join('');
+  return`<div class="org" style="margin:0 0 14px"><b>Grafik kehadiran Musyawarah Gabungan per bulan</b><div style="margin:6px 0"><span class="tag"><span style="color:var(--pr)">■</span> Hadir</span> <span class="tag"><span style="color:var(--dg)">■</span> Tidak hadir</span></div><svg viewBox="0 0 ${W} 200" width="${W}" height="200" role="img" aria-label="Grafik kehadiran per bulan">${bars}</svg></div>`}
+function dlg(msg,def,cb,ask){
+  const d=document.createElement('div');d.className='ov';const inp=typeof def==='string';
+  d.innerHTML=`<div class="dl"><p>${esc(msg)}</p>${inp?`<input id="dli" value="${esc(def)}">`:''}<div class="bar" style="margin:0;justify-content:flex-end">${ask?'<button id="dlc">Batal</button>':''}<button class="p" id="dlo">OK</button></div></div>`;
+  document.body.appendChild(d);const i=d.querySelector('#dli'),ok=()=>{const v=i?i.value:true;d.remove();if(cb)cb(v)};
+  d.querySelector('#dlo').onclick=ok;const c=d.querySelector('#dlc');if(c)c.onclick=()=>d.remove();
+  if(i){i.focus();i.onkeydown=e=>{if(e.key==='Enter')ok()}}
+}
+const ask=(m,cb)=>dlg(m,undefined,cb,true),askT=(m,def,cb)=>dlg(m,def,cb,true),say=m=>dlg(m);
+const modeBar=()=>`<div class="bar" style="margin-top:10px"><button class="chip ${mode==='bagan'?'on':''}" data-a="mode" data-m="bagan">Tampilan Bagan</button><button class="chip ${mode==='data'?'on':''}" data-a="mode" data-m="data">Kelola Data</button></div>`;
+function chart(top,bot,tl,bl){
+  const nd=p=>`<div class="nd"><b>${esc(p.name)}</b>${p.people.length?p.people.map(q=>`<span>${esc(q.n)}</span>`).join(''):'<i>belum diisi</i>'}</div>`;
+  return`<div class="org"><div class="lbl">${tl}</div><div class="lvl t4">${top.map(nd).join('')}</div>${bot.length?`<div class="arr">▼</div><div class="lbl">${bl}</div><div class="lvl sub">${bot.map(nd).join('')}</div>`:''}</div>`;
+}
+function pcChart(){const T=['Kyai Desa','Wakil Kyai Desa','Penerobos Desa','Agnia Desa','KU Desa','Mubaligh Desa'];
+  return chart(db.pc.filter(p=>T.includes(p.name)||p.grp==='4S'),db.pc.filter(p=>!T.includes(p.name)&&p.grp!=='4S'),'Struktur Kepengurusan Desa Penajam Selatan','Kepengurusan Lainnya');}
+function lastMat(){
+  const rows=db.kinds.map(k=>{const l=db.ag.filter(x=>x.kind===k&&x.mat&&x.st!=='Batal').sort((a,b)=>b.date.localeCompare(a.date))[0];
+  return`<div class="card"><h3><span>${esc(k)}</span></h3>${l?`<div><span class="tag">${esc(l.date)}</span></div><div>${esc(l.mat)}</div><small class="empty">Pemateri: ${esc(l.who||'-')} · ${esc(l.place||'-')}</small>`:'<div class="empty">Belum ada data materi</div>'}</div>`}).join('');
+  return`<div class="sec">Materi terakhir yang disampaikan</div><div class="grid" style="margin-bottom:14px">${rows}</div>`;
+}
+const today=()=>new Date().toISOString().slice(0,10);
+function main(u){
+  $('#app').innerHTML=`<header><div class="lg"><div class="lgo">PS</div><div><b>Desa Penajam Selatan</b><small>Database Desa · ${esc(u)}</small></div></div><div><button class="ic" data-a="tab" data-t="home" title="Beranda">🏠</button><button class="ic" data-a="out" title="Keluar">🚪</button></div></header>
+  <nav>${[['home','🏠','Beranda'],['pc','🗂️','Struktur'],['pac','👥','PAC'],['ag','📅','Agenda'],['mus','🤝','Musyawarah']].map(t=>`<button class="${tab===t[0]?'on':''}" data-a="tab" data-t="${t[0]}"><span style="font-size:20px">${t[1]}</span>${t[2]}</button>`).join('')}</nav><main id="v">${view()}</main><button class="fab" data-a="fab" title="Tambah agenda">+</button>`;
+  const ft=$('#ft');if(ft)ft.onchange=()=>{fType=ft.value;redo()};
+  const fm=$('#fm');if(fm)fm.onchange=()=>{fMonth=fm.value;redo()};
+  const fk=$('#fk');if(fk)fk.onchange=()=>{fKind=fk.value;redo()};
+  const fa=$('#fa');if(fa)fa.onchange=()=>{fAm=fa.value;redo()};
+  const mt=$('#mt');if(mt)mt.onchange=()=>{$('#ro').style.display=mt.value==='Musyawarah Gabungan'?'':'none'};
+}
+const redo=()=>{let u='';try{u=sessionStorage.getItem('pg_sess')}catch(e){}main(u)};
+function posOf(el){const c=el.closest('.card');if(!c)return null;const l=c.dataset.s==='pc'?db.pc:db.pac[cur].pos;return{c,l,p:l.find(x=>x.id===c.dataset.id)}}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,i=+b.dataset.i;
+  if(a==='tab'||a==='go'){tab=b.dataset.t;if(b.dataset.m)mode=b.dataset.m;window.scrollTo(0,0);return redo()}
+  if(a==='fab'){tab='ag';redo();const el=$('#ak');if(el)el.scrollIntoView({block:'center'});return}
+  if(a==='out'){try{sessionStorage.removeItem('pg_sess')}catch(x){}return login()}
+  if(a==='pw'){const n=prompt('Password baru:');if(n&&n.length>=4){let s='';try{s=sessionStorage.getItem('pg_sess')}catch(x){}
+    const f=users.find(x=>x.u===s);if(f){f.p=n;wr('pg_users',users);alert('Password diubah')}}else if(n)alert('Minimal 4 karakter');return}
+  if(a==='pick'){cur=i;return redo()}
+  if(a==='newpac'){askT('Nama PAC/Kelompok baru:','',n=>{if(n&&n.trim()){const s=db.pac[0];db.pac.push({id:uid(),name:n.trim(),pos:s?s.pos.map(p=>P(p.name,p.grp)):[]});cur=db.pac.length-1;save();redo()}});return}
+  if(a==='delpac'){ask('Hapus PAC '+db.pac[cur].name+' beserta datanya?',()=>{db.pac.splice(cur,1);cur=0;save();redo()});return}
+  if(a==='newpc'||a==='newpos'){const n=$('#np').value.trim();if(!n)return;
+    if(a==='newpc')db.pc.push(P(n,$('#ng').value));else db.pac[cur].pos.push(P(n,$('#ng').value));save();return redo()}
+  if(a==='addp'){const o=posOf(b);const n=o.c.querySelector('.in-n').value.trim();if(!n)return;
+    o.p.people.push({n,h:o.c.querySelector('.in-h').value.trim()});save();return redo()}
+  if(a==='delp'){const o=posOf(b);o.p.people.splice(i,1);save();return redo()}
+  if(a==='delpos'){const o=posOf(b);ask('Hapus jabatan '+o.p.name+'?',()=>{o.l.splice(o.l.indexOf(o.p),1);save();redo()});return}
+  if(a==='savemus'){const d=$('#md').value;if(!d){say('Isi tanggal');return}
+    const g=$('#mt').value==='Musyawarah Gabungan',R=roster(),cbs=[...document.querySelectorAll('.rk')];
+    const rec={rs:g?R.map((p,i)=>({n:p.n,r:p.r,g:p.g,h:!!(cbs[i]&&cbs[i].checked)})):null,id:uid(),type:$('#mt').value,date:d,place:$('#mp').value,att:(db.mus.find(v=>v.id===editId)||{}).att||'',ev:$('#me').value,lap:[...document.querySelectorAll('.lp')].map(t=>({k:t.dataset.k,t:t.value})).filter(l=>l.t.trim()),res:$('#mr').value,fol:(db.mus.find(v=>v.id===editId)||{}).fol||''};if(editId){const ix=db.mus.findIndex(v=>v.id===editId);rec.id=editId;if(ix>=0)db.mus[ix]=rec;editId=''}else db.mus.push(rec);save();return redo()}
+  if(a==='delmus'){const id=b.dataset.id;ask('Hapus catatan musyawarah ini? Data kehadiran dan grafik ikut berubah.',()=>{if(editId===id)editId='';db.mus=db.mus.filter(x=>x.id!==id);save();redo()});return}
+  if(a==='clr'){fType='semua';fMonth='';const s=$('#ft'),m=$('#fm');if(s)s.value='semua';if(m)m.value='';return redo()}
+  if(a==='clra'){fKind='semua';fAm='';const s=$('#fk'),m=$('#fa');if(s)s.value='semua';if(m)m.value='';return redo()}
+  if(a==='rf'){return redo()}
+  if(a==='emus'){editId=b.dataset.id;tab='mus';redo();window.scrollTo(0,0);return}
+  if(a==='cancel'){editId='';return redo()}
+  if(a==='mode'){mode=b.dataset.m;return redo()}
+  if(a==='allh'){document.querySelectorAll('.rk').forEach(c=>c.checked=b.dataset.v==='1');return}
+  if(a==='tgl'){const x=db.mus.find(v=>v.id===b.dataset.id);x.rs[i].h=!x.rs[i].h;openMus=x.id;save();return redo()}
+  if(a==='mat'){const x=db.ag.find(v=>v.id===b.dataset.id);askT('Materi yang disampaikan:',x.mat||'',n=>{x.mat=n.trim();save();redo()});return}
+  if(a==='newkind'){const n=$('#nk').value.trim();if(n&&!db.kinds.includes(n)){db.kinds.push(n);save();redo()}return}
+  if(a==='delkind'){ask('Hapus jenis kegiatan ini? Agenda yang sudah tersimpan tidak terhapus.',()=>{db.kinds.splice(i,1);save();redo()});return}
+  if(a==='saveag'){const d=$('#ad').value,k=$('#ak').value;if(!d||!k){say('Pilih kegiatan dan isi tanggal');return}
+    db.ag.push({id:uid(),kind:k,date:d,time:$('#aw').value,place:$('#ap').value,who:$('#am').value,note:$('#an').value,mat:$('#at').value,st:'Terjadwal'});save();return redo()}
+  if(a==='stag'){const x=db.ag.find(v=>v.id===b.dataset.id);const o=['Terjadwal','Selesai','Batal'];x.st=o[(o.indexOf(x.st)+1)%3];save();return redo()}
+  if(a==='delag'){const id=b.dataset.id;ask('Hapus agenda ini?',()=>{db.ag=db.ag.filter(x=>x.id!==id);save();redo()});return}
+});
+init();
+</script>
+</body>
+</html>
